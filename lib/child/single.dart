@@ -6,9 +6,9 @@ class SingleDialog extends StatelessWidget {
   SingleDialog(
       {Key key, @required this.title, this.description, @required this.type})
       : super(key: key);
-  String title;
-  String description;
-  DialogType type;
+  final String title;
+  final String description;
+  final DialogType type;
   @override
   Widget build(BuildContext context) {
     return Column(

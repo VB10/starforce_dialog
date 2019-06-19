@@ -1,29 +1,28 @@
+import 'package:dialog_app/child/single.dart';
 import 'package:dialog_app/helper/consts.dart';
 import 'package:dialog_app/helper/ui_helper.dart';
 import 'package:flutter/material.dart';
 
-import 'child/multiple.dart';
-
-class CustomDialog extends StatefulWidget {
+class StarforceDialog extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => CustomDialogState();
+  State<StatefulWidget> createState() => StarforceDialogState();
   final String description;
   final String title;
   final DialogType type;
   final TextField field;
   final List<RaisedButton> buttons;
 
-  CustomDialog(
+  StarforceDialog(
       {Key key,
       @required this.title,
       this.field,
       this.description,
-      this.type,
+      @required this.type,
       this.buttons})
       : super(key: key);
 }
 
-class CustomDialogState extends State<CustomDialog>
+class StarforceDialogState extends State<StarforceDialog>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _scaleAnimation;
@@ -56,27 +55,29 @@ class CustomDialogState extends State<CustomDialog>
           child: Column(
             mainAxisSize: MainAxisSize.min, // To make the card compact
             children: <Widget>[
-              widget.type == DialogType.loading
-                  ? UIHelper.verticalSpace()
-                  : Align(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        icon: Icon(Icons.close),
-                      ),
-                    ),
-              MultipleDialog(
+              _dialogCloseButton,
+              SingleDialog(
                 title: widget.title,
                 description: widget.description,
                 type: widget.type,
-                buttons: widget.buttons,
-                textField: widget.field,
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget get _dialogCloseButton {
+    return widget.type == DialogType.loading
+        ? UIHelper.verticalSpace()
+        : Align(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: Icon(Icons.close),
+            ),
+          );
   }
 
   @override

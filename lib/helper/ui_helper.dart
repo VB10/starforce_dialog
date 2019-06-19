@@ -1,7 +1,5 @@
 import 'dart:ui';
-import 'dart:ui' as prefix0;
 
-import 'package:dialog_app/helper/consts.dart';
 import 'package:flutter/material.dart';
 
 class UIHelper {

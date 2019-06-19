@@ -1,6 +1,8 @@
 import 'package:dialog_app/dialog.dart';
 import 'package:dialog_app/helper/consts.dart';
 import 'package:flutter/material.dart';
+import 'dialog.dart';
+import 'manager.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,9 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog(
       barrierDismissible: true,
       context: context,
-      builder: (BuildContext context) => CustomDialog(
+      builder: (BuildContext context) => StarforceDialog(
             title: "aasd",
-            type: DialogType.loading,
+            type: DialogType.success,
             field: TextField(),
             description:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque eget dolor vitae rhoncus.",
@@ -49,7 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _showDialog,
+        onPressed: () {
+          DialogManager.showSingle(
+              "veli", "ahmet", DialogType.error, this.context);
+        },
         tooltip: 'Dialog',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
