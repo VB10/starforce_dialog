@@ -1,7 +1,12 @@
+import 'package:dialog_app/child/error.dart';
+import 'package:dialog_app/child/info.dart';
+import 'package:dialog_app/child/loading.dart';
 import 'package:dialog_app/child/single.dart';
 import 'package:dialog_app/helper/consts.dart';
 import 'package:dialog_app/helper/ui_helper.dart';
 import 'package:flutter/material.dart';
+
+import 'child/succes.dart';
 
 class StarforceDialog extends StatefulWidget {
   @override
@@ -10,6 +15,7 @@ class StarforceDialog extends StatefulWidget {
   final String title;
   final DialogType type;
   final TextField field;
+  final Icon icon;
   final List<RaisedButton> buttons;
 
   StarforceDialog(
@@ -18,7 +24,8 @@ class StarforceDialog extends StatefulWidget {
       this.field,
       this.description,
       @required this.type,
-      this.buttons})
+      this.buttons,
+      this.icon})
       : super(key: key);
 }
 
@@ -54,18 +61,42 @@ class StarforceDialogState extends State<StarforceDialog>
           decoration: UIHelper.dialogBoxDecoration,
           child: Column(
             mainAxisSize: MainAxisSize.min, // To make the card compact
-            children: <Widget>[
-              _dialogCloseButton,
-              SingleDialog(
-                title: widget.title,
-                description: widget.description,
-                type: widget.type,
-              ),
-            ],
+            children: <Widget>[_dialogCloseButton, _dialog],
           ),
         ),
       ),
     );
+  }
+
+  Widget get _dialog {
+    switch (widget.type) {
+      case DialogType.info:
+        return InfoDialog(
+            title: widget.title,
+            description: widget.description,
+            icon: widget.icon);
+      case DialogType.success:
+        return SuccessDialog(
+            title: widget.title,
+            description: widget.description,
+            icon: widget.icon);
+      case DialogType.loading:
+        return LoadingDialog(
+            title: widget.title,
+            description: widget.description,
+            icon: widget.icon);
+      case DialogType.error:
+        return ErrorDialog(
+            title: widget.title,
+            description: widget.description,
+            icon: widget.icon);
+        break;
+      default:
+        return InfoDialog(
+            title: widget.title,
+            description: widget.description,
+            icon: widget.icon);
+    }
   }
 
   Widget get _dialogCloseButton {

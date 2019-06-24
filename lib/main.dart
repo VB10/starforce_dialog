@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           DialogManager.showSingle(
-              "veli", "ahmet", DialogType.error, this.context);
+              title: "Welcome", barrierDismissible: false, description: "oke",context: context,type: DialogType.loading);
         },
         tooltip: 'Dialog',
         child: Icon(Icons.add),
