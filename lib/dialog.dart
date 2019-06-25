@@ -1,5 +1,6 @@
 import 'package:dialog_app/child/error.dart';
 import 'package:dialog_app/child/info.dart';
+import 'package:dialog_app/child/inputs.dart';
 import 'package:dialog_app/child/loading.dart';
 import 'package:dialog_app/child/single.dart';
 import 'package:dialog_app/helper/consts.dart';
@@ -13,15 +14,15 @@ class StarforceDialog extends StatefulWidget {
   State<StatefulWidget> createState() => StarforceDialogState();
   final String description;
   final String title;
+  final List<Widget> buttons;
   final DialogType type;
-  final TextField field;
+  final List<TextField> fields;
   final Icon icon;
-  final List<RaisedButton> buttons;
 
   StarforceDialog(
       {Key key,
       @required this.title,
-      this.field,
+      this.fields,
       this.description,
       @required this.type,
       this.buttons,
@@ -74,6 +75,7 @@ class StarforceDialogState extends State<StarforceDialog>
         return InfoDialog(
             title: widget.title,
             description: widget.description,
+            buttons: widget.buttons,
             icon: widget.icon);
       case DialogType.success:
         return SuccessDialog(
@@ -87,6 +89,13 @@ class StarforceDialogState extends State<StarforceDialog>
             icon: widget.icon);
       case DialogType.error:
         return ErrorDialog(
+            title: widget.title,
+            description: widget.description,
+            icon: widget.icon);
+        break;
+      case DialogType.inputs:
+        return InputsDialog(
+            inputs: widget.fields,
             title: widget.title,
             description: widget.description,
             icon: widget.icon);

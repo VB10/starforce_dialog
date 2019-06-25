@@ -30,19 +30,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void _showDialog() {
-    showDialog(
-      barrierDismissible: true,
-      context: context,
-      builder: (BuildContext context) => StarforceDialog(
-            title: "aasd",
-            type: DialogType.success,
-            field: TextField(),
-            description:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris scelerisque eget dolor vitae rhoncus.",
-          ),
-    );
-  }
+  @override
+  // TODO: implement widget
+  Widget get _button => RaisedButton(
+        onPressed: null,
+        child: Text("data"),
+      );
+
+  Widget get _textField => TextField();
 
   @override
   Widget build(BuildContext context) {
@@ -52,8 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          DialogManager.showSingle(
-              title: "Welcome", barrierDismissible: false, description: "oke",context: context,type: DialogType.loading);
+          DialogManager.show(
+              title: "Welcome",
+              barrierDismissible: false,
+              description: "oke",
+              buttons: [_button],
+              context: context,
+              inputs: [_textField],
+              type: DialogType.inputs);
         },
         tooltip: 'Dialog',
         child: Icon(Icons.add),

@@ -16,7 +16,6 @@ class LoadingDialog extends StatelessWidget {
     return Column(
       children: <Widget>[
         _loading,
-        _infoIcon,
         _title,
         _space,
         _description,

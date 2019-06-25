@@ -6,6 +6,7 @@ class UIHelper {
   UIHelper._();
 
   static const double padding = 8.0;
+  static const double ICON_SIZE = 60.0;
 
   static final TextStyle titleTextStyle =
       TextStyle(fontSize: 32, fontWeight: FontWeight.w700);

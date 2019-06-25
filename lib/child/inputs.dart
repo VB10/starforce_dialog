@@ -1,22 +1,31 @@
 import 'package:dialog_app/helper/ui_helper.dart';
 import 'package:flutter/material.dart';
 
-class InfoDialog extends StatelessWidget {
-  InfoDialog({
+class InputsDialog extends StatelessWidget {
+  InputsDialog({
     Key key,
     @required this.title,
     this.description,
     this.icon,
+    @required this.inputs,
     this.buttons,
   }) : super(key: key);
   final String title;
   final String description;
   final Icon icon;
-  final List<Widget> buttons;
+  final List<RaisedButton> buttons;
+  final List<TextField> inputs;
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: <Widget>[_infoIcon, _title, _space, _description, _buttons],
+      children: <Widget>[
+        _infoIcon,
+        _title,
+        _space,
+        _description,
+        _buttons,
+        _inputs
+      ],
     );
   }
 
@@ -36,7 +45,7 @@ class InfoDialog extends StatelessWidget {
       );
 
   Widget get _buttons => buttons == null
-      ? UIHelper.verticalSpace(height: 10)
+      ? UIHelper.verticalSpace(height: UIHelper.padding)
       : Row(
           children: _buttonExpanded,
         );
@@ -45,17 +54,19 @@ class InfoDialog extends StatelessWidget {
         this.title,
         style: UIHelper.titleTextStyle,
       );
+
+  Widget get _inputs => Wrap(
+        runSpacing: UIHelper.padding,
+        children: inputs,
+      );
+
   Widget get _description => Text(
         this.description ?? "",
         textAlign: TextAlign.center,
         style: UIHelper.descriptionTextStyle,
       );
-  Widget get _infoIcon =>
-      this.icon ??
-      Icon(
-        Icons.info,
-        size: UIHelper.ICON_SIZE,
-        color: Colors.blue,
-      );
+
+  // Widget get _buttons => this.buttons ?? UIHelper.verticalSpace(height: 10);
+  Widget get _infoIcon => this.icon ?? UIHelper.verticalSpace(height: 10);
   Widget get _space => UIHelper.verticalSpace(height: 10);
 }
