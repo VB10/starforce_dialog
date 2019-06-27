@@ -50,6 +50,13 @@ class SuccessDialog extends StatelessWidget {
         textAlign: TextAlign.center,
         style: UIHelper.descriptionTextStyle,
       );
-  Widget get _infoIcon => this.icon ?? Icon(Icons.check, color: Colors.green);
+  Widget get _infoIcon =>
+      this.icon ??
+      Icon(
+        Icons.check,
+        color: Colors.green,
+        size: UIHelper.ICON_SIZE,
+        // 
+      );
   Widget get _space => UIHelper.verticalSpace(height: 10);
 }

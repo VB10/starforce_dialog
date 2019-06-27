@@ -1,7 +1,5 @@
-import 'package:dialog_app/dialog.dart';
 import 'package:dialog_app/helper/consts.dart';
 import 'package:flutter/material.dart';
-import 'dialog.dart';
 import 'manager.dart';
 
 void main() => runApp(MyApp());
@@ -38,6 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
       );
 
   Widget get _textField => TextField();
+  Widget get _textField2 => TextField();
+  Widget get _textField3 => TextField();
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
               description: "oke",
               buttons: [_button],
               context: context,
-              inputs: [_textField],
-              type: DialogType.inputs);
+              inputs: [_textField,_textField2,_textField3],
+              type: DialogType.success);
         },
         tooltip: 'Dialog',
         child: Icon(Icons.add),
